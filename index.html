@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎵 Spotify Playlists</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green: #1DB954; --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a; --border: #222222; --text: #f0f0f0; --muted: #888888; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; padding: 0 0 80px; }
+    header { background: linear-gradient(180deg, #111 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; }
+    .logo { font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: 16px; font-weight: 600; }
+    header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; }
+    header p { color: var(--muted); font-size: 15px; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-top: 20px; }
+    .filters { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; padding: 32px 24px 0; }
+    .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 8px 18px; border-radius: 20px; cursor: pointer; transition: all .2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--green); border-color: var(--green); color: #000; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; max-width: 1200px; margin: 40px auto 0; padding: 0 24px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform .2s, border-color .2s; }
+    .card:hover { transform: translateY(-4px); border-color: #333; }
+    .card-header { padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 6px; }
+    .card-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--green); font-weight: 700; }
+    .card-title { font-size: 17px; font-weight: 700; line-height: 1.3; }
+    .card-desc { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.5; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 20px 16px; }
+    .tag { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+    .embed-wrap { border-radius: 0 0 16px 16px; overflow: hidden; }
+    .embed-wrap iframe { display: block; width: 100%; border: none; }
+    footer { text-align: center; padding: 40px 24px 0; color: var(--muted); font-size: 12px; }
+    footer a { color: var(--green); text-decoration: none; }
+    @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🎵 Javi Saeta Hidalgo</div>
+    <h1>My Spotify Playlists</h1>
+    <p>A curated collection of handcrafted playlists — from experimental noise to Spanish punk, avant-garde chaos to underground rock.</p>
+    <div class="badge">5 Playlists · Curated with AI</div>
+  </header>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCards('experimental',this)">Experimental</button>
+    <button class="filter-btn" onclick="filterCards('spanish',this)">Spanish</button>
+    <button class="filter-btn" onclick="filterCards('punk',this)">Punk</button>
+  </div>
+  <div class="grid" id="grid">
+    <div class="card" data-tags="experimental">
+      <div class="card-header"><span class="card-tag">Inspired by Angine de Poitrine</span><span class="card-title">Rock Experimental y Alternativo</span><span class="card-desc">Noise, post-punk y caos organizado. Para cuando el indie normal ya no es suficiente.</span></div>
+      <div class="card-tags"><span class="tag">Noise Rock</span><span class="tag">Post-Punk</span><span class="tag">Indie</span><span class="tag">Quebec</span></div>
+      <div class="embed-wrap"><iframe src="https://open.spotify.com/embed/playlist/7B9LMlnDvfMpjNLizNDqbR?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="card" data-tags="spanish">
+      <div class="card-header"><span class="card-tag">Inspired by CERVATANA</span><span class="card-title">Indie Rock Español</span><span class="card-desc">La escena alternativa española en su mejor momento. Guitarras, sol y actitud.</span></div>
+      <div class="card-tags"><span class="tag">Indie</span><span class="tag">Garage</span><span class="tag">Spanish</span><span class="tag">Mediterranean</span></div>
+      <div class="embed-wrap"><iframe src="https://open.spotify.com/embed/playlist/1HBpNsulu2mav1jvib8E1s?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="card" data-tags="experimental">
+      <div class="card-header"><span class="card-tag">Enter at your own risk</span><span class="card-title">Experimental Soundscapes</span><span class="card-desc">Esto no es música para todo el mundo. Ni para todos los momentos. Pero existe.</span></div>
+      <div class="card-tags"><span class="tag">Avant-Garde</span><span class="tag">Noise</span><span class="tag">Free Jazz</span><span class="tag">Extreme</span></div>
+      <div class="embed-wrap"><iframe src="https://open.spotify.com/embed/playlist/6xfJ7Tg42eCIYDMSf5owsw?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="card" data-tags="experimental">
+      <div class="card-header"><span class="card-tag">Inspired by Clown Core</span><span class="card-title">Clown Core Chaos</span><span class="card-desc">Jazz técnico, metal extremo y humor absurdo. Caos con estructura. O estructura con caos.</span></div>
+      <div class="card-tags"><span class="tag">Jazz</span><span class="tag">Metal</span><span class="tag">Absurdist</span><span class="tag">Chaos</span></div>
+      <div class="embed-wrap"><iframe src="https://open.spotify.com/embed/playlist/3rsHnWmuMGjN9tL2tMhlm8?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="card" data-tags="spanish punk">
+      <div class="card-header"><span class="card-tag">Inspired by Biznaga · LA ÉLITE</span><span class="card-title">Punk Rock Español</span><span class="card-desc">Punk, hardcore y rabia en castellano. Todo lo que suena a asfalto, barrio y no parar.</span></div>
+      <div class="card-tags"><span class="tag">Punk</span><span class="tag">Hardcore</span><span class="tag">Spanish</span><span class="tag">Street</span></div>
+      <div class="embed-wrap"><iframe src="https://open.spotify.com/embed/playlist/0BsClanB8VZyIfi4pfmYiV?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+  <footer><p>Made with 🤖 + 🎧 · <a href="https://github.com/SapSaeta" target="_blank">@SapSaeta</a> on GitHub</p></footer>
+  <script>
+    function filterCards(tag, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (tag === 'all' || card.dataset.tags.includes(tag)) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
